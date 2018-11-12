@@ -1,0 +1,53 @@
+Introduction to Pandas - PyCon Ireland 2018 workshop by Allen Thomas Varghese. 10th November 2018
+
+https://github.com/allentv/PyDataWorkshops
+
+pandas represents tabular data in memory. pandas always works columns-wise; if you work on rows it's much slower.
+
+Easy to make a pandas dataframe from a dictionary - pd.DataFrame(dict).
+
+index is used for quick lookup
+
+accessing rows: df.loc[idx] - accessing by location
+accessing columns: df[column_name]
+accessing values of columns: df[column_name].values <- returns numpy array
+							 df['column1'].tolist() <- returns python list
+
+Inspecting the data:
+
+df.info() - numbers and types of columns, numbers of rows, memory used
+df.columns - names of columns (df.columns.tolist() <- returns a python list of columns names)
+df.index - range of indices
+df.head(5) - top 5 rows of a dataframe
+df.describe() - summary stats on the numerical numbers if at least one column is numerical; if only strings, then stuff like unique and count is returned
+del df['column_name'] - deletes the column in the dataframe df
+len(df) - number of ROWS in the dataframe
+len(df.columns) - number of COLUMNS in the dataframe
+help(df.loc) - displays help on the given method)
+map - goes over every item in the iterable and e.g. applies a lambda function
+
+If you're expecting a column to be all integers, but the df.info() says the type of the column is object, it means that there is some value in this column that is not an integer!
+
+
+Data Filtering:
+
+If a column contains a string, we can do filtering with any string type functions, e.g.
+df['column_name'].str.contains('substring') <- returns an array of True/False for each row of the df
+df[df['column_name'].str.contains('substring')] <- returns a filtered df
+
+~ is used as a negation of a condition
+
+df[df['column_name'].isin['name1','name2'] - filters the df only where columns names are either name1 or name2
+
+
+Data Group By:
+
+df.groupby('column_name')['group_by_column'].count() - groups the column column_name counting the occurence of a value in column group_by_column
+
+df.groupby('column_name', as_index = False)['group_by_column'].count() - also prints/saves the index
+
+
+SQL with pandas
+
+sql alchemy
+sql lite

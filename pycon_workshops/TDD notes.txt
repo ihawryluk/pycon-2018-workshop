@@ -1,0 +1,48 @@
+Introduction to TDD (Test Driven Development) - PyCon Ireland 2018 workshop by Leonardo Giordani. 10th November 2018
+
+https://github.com/lgiordani/pytest_workshop
+
+TDD is not a tool, not a language, not a book. It's a methodology that can be applied for almost every programming language. It's a mindset - the way you approach development and your job and problems.
+
+Test First, Code later.
+Write Minimal Code. (do minimal amount of work that solves the issue)
+
+TDD workflow:
+1. Pick ONE bug/missing feature
+2. Write a test that FAILS.
+3. Write the MINIMAL code that passes the test.
+4. REFACTOR the code. (i.e. beautify the code if needed)
+
+py.test -svv # use this command to run pytest in the terminal
+
+NEVER work with more than one failing test.
+In TDD it is acceptable to comment the tests.
+
+We should not alternate the tests - we write them first and accept them; then if they fail, we should not edit them so that they pass instead of failing - they were written to check whether the code is correct. So if the test fails, we DO NOT CHANGE THE TESTS, we CHANGE THE CODE.
+
+The right solution is not the beautiful code it's code that passes the tests. (only at the point of the testing, later we can refactor). Tests are like pillars. When we refactor the code, we can always check that the new code still passes the code. With the tests I can make sure, that the change I make in the code to make the code look better does not change how the code works.
+
+It is ok to use 'assert' in the testing environment - not on production. Problem is it does not return exceptions, so it is not suitable for final products.
+
+Test one thing in each test function, otherwise you don't know which test failed.
+
+pytest is a framework and a library.
+
+Coverage = how many lines (%) of your code where executed when running the tests suite. With TDD coverage should be 100% in the ideal case.
+py.test -svv --cov
+
+Always try to test the corner cases.
+
+Don't write tests that are not needed - they have to be maintained and it's always better to have less code to maintain.
+
+Coverage - code is there for a reason.
+Regressions - past tests are always run. (the tests once written stay in the suite forever)
+Documentation - at least the examples. Tests are also a good way to document use-cases.
+Refactoring - never without the tests. Do not refactor the code that does not have the tests - don't even touch it.
+
+Tools and libraries:
+Pytest documentation - https://docs.pytest.org/en/latest/
+unittest.mock - https://docs.python.org/3/library/unittest.mock.html
+tox - https://tox.readthedocs.io (for testing with different versions of Python and different configurations)
+travis.ci - https://travis.ci (continuous iterations; monitors your repository, adds a test and runs it for every push)
+http://blog.thedigitalcatonline.com/categories/tdd/ (blog of the workshop guy, Leonardo Giordani)
